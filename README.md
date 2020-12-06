@@ -3,7 +3,7 @@
 ![A beautiful humpback whale with hat](resources/Galfget.png)
 
 ![Last release](https://img.shields.io/badge/Last%20release-SpiderSnake-ff065c)
-[![Package status](https://img.shields.io/badge/Package%20status-up%20to%20date!-blue)](https://pypi.org/project/pandas/)
+[![Package status](https://img.shields.io/badge/Package%20status-up%20to%20date!-blue)](https://github.com/AlfonsoBarragan/Galfgets)
 ![Last commit](https://img.shields.io/github/last-commit/AlfonsoBarragan/Galfgets)
 ![Coverage](https://img.shields.io/badge/Coverage-100%25-39b272)
 [![License](https://img.shields.io/badge/License-GNU-brightgreen)](https://github.com/AlfonsoBarragan/Galfgets/blob/main/LICENSE)
