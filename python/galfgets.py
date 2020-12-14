@@ -22,6 +22,9 @@ from matplotlib.collections import QuadMesh
 flatten_list        = lambda t: [item for sublist in t for item in sublist]
 formatter_sentences = lambda x, y: "{}\n{}".format(x,y)
 
+sum_funct           = lambda x, y: x+y
+variance_funct      = lambda x, m: (x - m) ** 2
+
 # Regular expressions
 
 _re_words           = re.compile(r"[a-zA-ZáéíóúÁÉÍÓÚ]*")
@@ -31,9 +34,35 @@ _re_digits          = re.compile(r"[\d|\d\.]*")
 
 ## Dataset related tools
 def read_dataset(path, separator=","):
+    """ Reads the dataset in csv format by defect (separator = ,)
+    
+    Parameters:
+    path (str):         String path to the file in order to read it.
+
+    separator (str):    String character that separates the data's columns.
+
+    Returns:
+    pandas DataFrame object with all the registers from the file pass.
+
+    """
+
     return pd.read_csv(path, sep=separator)
 
 def clean_and_normalize_data(data, exclude=[]):
+    """ Cleans and normalize the data from a pandas DataFrame object
+
+    Parameters:
+    data (DataFrame):   pandas DataFrame object with the data to normalize
+
+    exclude (list):     List with integer data that represents the columns
+                        of the dataset to be excluded from normalized.
+
+    Returns:
+    A panda DataFrame object with the data normalized and cleaned of the
+    columns that are indicated in exclude list.
+
+    """
+
     df_ex           = data.loc[:, data.columns.difference(exclude)]
     df_labels       = data[exclude]
 
@@ -51,6 +80,16 @@ def clean_and_normalize_data(data, exclude=[]):
     return df_norm
 
 def normalize_data(dataframe):
+    """ Just normalize all the data in a pandas DataFrame object
+
+    Parameters:
+    dataframe (DataFrame): pandas DataFrame object with the data to normalize
+
+    Returns:
+    A pandas object with the data normalized
+
+    """
+
     min_max_scaler      = preprocessing.MinMaxScaler()
     norm_values         = min_max_scaler.fit_transform(dataframe)
     
@@ -444,6 +483,12 @@ def ls(ruta = getcwd()):
     # Code from https://es.stackoverflow.com/questions/24278/
     return [arch.name for arch in scandir(ruta) if arch.is_file()]
 
+def read_json_file(route):
+    with open(route) as json_file:
+        json_file_readt = json.load(json_file)
+    
+    return json_file_readt
+
 # List tools
 
 def write_list_to_file(list_to_write, output_file):
@@ -453,4 +498,32 @@ def write_list_to_file(list_to_write, output_file):
         file.write("'{}',".format(element))
 
     file.close()
+
+def mean(list_input):
+    aggregation = functools.reduce(sum_funct, list_input, 0)
+
+    return aggregation / float(len(list_input))
+
+def variance(list_input):
+    m = mean(list_input)
+    v = functools.reduce(sum_funct, map(functools.partial(variance_funct, m=m), list_input))
+    
+    return v / float(len(list_input))
+
+def standard_desviation(list_input):
+    return sqrt(variance(list_input))
+
+def list_to_num_dict(list_elements):
+
+    dictionary = {}
+    
+    for element in list_elements:
+        try:
+            element = int(element)
+            dictionary[element] = element
+        except ValueError:
+            dictionary[element] = len(dictionary)
+            
+            
+    return dictionary
 

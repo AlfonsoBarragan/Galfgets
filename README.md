@@ -19,6 +19,8 @@ This is a repo to store all the functions, regular expressions and utilities in 
     * [Matplotlib](https://matplotlib.org/)
 
 ## What is inside of this module?
+
+### Python submodule
 * Lambda functions; Lambda functions usually used in python projects.
 * Regular expressions; Regular expressions usually used in python projects.
 * Data analysis tools; Tools for process elements related to the field of data analysis.    
@@ -32,3 +34,6 @@ This is a repo to store all the functions, regular expressions and utilities in 
     * Tree search tools
 * System tools; Typical functions to perform native system operations like ls or ps. 
 * List tools; Tools to perform complex operations in lists.
+
+### Bash submodule
+* Bash functions useful to correct mistakes (ie: expired pubkeys)
