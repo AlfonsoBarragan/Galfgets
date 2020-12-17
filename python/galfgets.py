@@ -227,6 +227,33 @@ def load_model(joblib_file, test, feature_to_predict, acc_opt=-1):
 
 ## Console representation
 
+def console_logger(list_to_print, sep_character='*', sep_elements='+'):
+
+    print("{0}{0}{0}{0}{0}{0}{0}{0}{0}{0}{0}{0}{0}{0}{0}{0}{0}{0}".format(sep_character))
+
+    for index, element in enumerate(list_to_print):
+        
+        print("{0}{0}{0}{0}{0}{0}{0}{0}{0}{0}{0}{0}{0}{0}{0}{0}{0}{0}".format(sep_elements))
+
+        if type(element) == type([]):
+            print('[')
+            for subindex, subelement in enumerate(element):
+                
+                if type(subelement) == type([]):
+                    print("\tindex:{}, value: sublist".format(subindex))
+                    console_logger(subelement, '___')
+                else:
+                    print("\tindex: {}, value: {}".format(subindex, subelement))
+        
+            print(']')
+        elif type(element) == type({}):
+            print('{')
+        else:    
+            print("[{}] ==> {}".format(index, element))
+
+    print("{0}{0}{0}{0}{0}{0}{0}{0}{0}{0}{0}{0}{0}{0}{0}{0}{0}{0}".format(sep_character))
+
+
 def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█'):
     # Code from: https://stackoverflow.com/questions/3173320/text-progress-bar-in-the-console
     """

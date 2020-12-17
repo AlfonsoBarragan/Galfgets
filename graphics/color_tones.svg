@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="400" width="400">
+    
+    <circle cx="70" cy="50" r="25" fill="rgb(112, 130, 56)" stroke="black" stroke-width="6"/>
+    <text x="18" y="100">
+        Olive green
+    </text>
+    <text x="40" y="120">
+        #708238
+    </text>
+    <circle cx="200" cy="50" r="25" fill="rgb(152, 251, 152)" stroke="black" stroke-width="6"/>
+    <text x="155" y="100">
+        Mint green
+    </text>
+    <text x="165" y="120">
+        #98fb98
+    </text>
+    
+</svg>
