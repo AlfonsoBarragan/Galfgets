@@ -1,20 +1,23 @@
 # Imports
-
+import re
 import copy
+import math
+import json
+import joblib
 import pickle
 import random
 import functools
-import numpy as np
-import pandas as pd
-import seaborn as sn
-import matplotlib.pyplot as plt
-import matplotlib.font_manager as fm
+import numpy                    as np
+import pandas                   as pd
+import seaborn                  as sn
+import matplotlib.pyplot        as plt
+import pdfminer.high_level      as pdfminer
+import matplotlib.font_manager  as fm
 
-from pandas import DataFrame
-from os import scandir, getcwd
-from sklearn import preprocessing
-from sklearn.externals import joblib
-from matplotlib.collections import QuadMesh
+from os                         import scandir, getcwd
+from pandas                     import DataFrame
+from sklearn                    import preprocessing
+from matplotlib.collections     import QuadMesh
 
 
 # Lambda functions
@@ -516,7 +519,19 @@ def read_json_file(route):
     
     return json_file_readt
 
-# List tools
+def read_pdf(pdf_route, paragraph_level=True, line_level=False, word_level=False, separators={'paragraph':'.\n', 'line':'.', 'word':' '}):
+
+    pdf_text = pdfminer.extract_text(pdf_route)
+
+    text_to_return = {}
+
+    if word_level       : text_to_return['words'] = pdf_text.split(separators['word'])
+    if line_level       : text_to_return['lines'] = pdf_text.split(separators['line'])
+    if paragraph_level  : text_to_return['paragraphs'] = pdf_text.split(separators['paragraph'])
+    
+    return text_to_return
+    
+    # List tools
 
 def write_list_to_file(list_to_write, output_file):
     file = open(output_file, 'w')
@@ -538,7 +553,7 @@ def variance(list_input):
     return v / float(len(list_input))
 
 def standard_desviation(list_input):
-    return sqrt(variance(list_input))
+    return math.sqrt(variance(list_input))
 
 def list_to_num_dict(list_elements):
 
