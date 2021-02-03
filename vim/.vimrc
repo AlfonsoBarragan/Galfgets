@@ -7,7 +7,7 @@ set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
 set smartindent
-set nu
+set number relativenumber
 set nowrap
 set smartcase
 set noswapfile
@@ -32,7 +32,10 @@ Plug 'vim-utils/vim-man'
 Plug 'lyuts/vim-rtags'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mbbill/undotree'
-
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'kana/vim-textobj-user' 
+Plug 'kana/vim-textobj-line'
 call plug#end()
  
 colorscheme gruvbox
