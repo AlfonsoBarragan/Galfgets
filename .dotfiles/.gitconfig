@@ -1,0 +1,9 @@
+[user]
+    name = Alfonso
+	email = 32295133+AlfonsoBarragan@users.noreply.github.com
+[filesystem "Debian|11.0.7|/dev/sdb6"]
+	timestampResolution = 6000 nanoseconds
+	minRacyThreshold = 5536 microseconds
+[filesystem "Debian|11.0.9.1|/dev/sdb6"]
+	timestampResolution = 7000 nanoseconds
+	minRacyThreshold = 4707 microseconds

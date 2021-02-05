@@ -36,6 +36,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'kana/vim-textobj-user' 
 Plug 'kana/vim-textobj-line'
+Plug 'preservim/nerdtree'
 call plug#end()
  
 colorscheme gruvbox
