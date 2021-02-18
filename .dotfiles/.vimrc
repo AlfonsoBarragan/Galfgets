@@ -37,6 +37,9 @@ Plug 'tpope/vim-surround'
 Plug 'kana/vim-textobj-user' 
 Plug 'kana/vim-textobj-line'
 Plug 'preservim/nerdtree'
+Plug 'natebosch/vim-lsc'
+Plug 'natebosch/vim-lsc-dart'
+Plug 'dart-lang/dart-vim-plugin', {'branch': '0.1.0'}
 call plug#end()
  
 colorscheme gruvbox
