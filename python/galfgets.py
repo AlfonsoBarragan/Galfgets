@@ -24,10 +24,13 @@ from matplotlib.collections     import QuadMesh
 
 flatten_list        = lambda t: [item for sublist in t for item in sublist]
 formatter_sentences = lambda x, y: "{}\n{}".format(x,y)
+gen_dict_from_int   = lambda x: {item:0 for item in range(x)}
 
-sum_funct           = lambda x, y: x+y
-variance_funct      = lambda x, m: (x - m) ** 2
+sum_funct               = lambda x, y: x+y
+variance_funct          = lambda x, m: (x - m) ** 2
 
+coordinates_oper        = lambda x1, x2: math.pow((x2 - x1), 2)
+distance_between_points = lambda p1, p2: math.sqrt(functools.reduce(sum_funct, map(coordinates_oper, p1, p2)))
 # Regular expressions
 
 _re_words           = re.compile(r"[a-zA-ZáéíóúÁÉÍÓÚ]*")
