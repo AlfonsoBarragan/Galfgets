@@ -337,9 +337,7 @@ def configcell_text_and_colors(array_df, lin, col, oText, facecolors, posi, fz, 
         lis_pos = [(oText._x, oText._y-0.3), (oText._x, oText._y), (oText._x, oText._y+0.3)]
         for i in range(len(lis_txt)):
             newText = dict(x=lis_pos[i][0], y=lis_pos[i][1], text=lis_txt[i], kw=lis_kwa[i])
-            #print 'lin: %s, col: %s, newText: %s' %(lin, col, newText)
             text_add.append(newText)
-        #print '\n'
 
         #set background color for sum cells (last line and last column)
         carr = [0.27, 0.30, 0.27, 1.0]
@@ -381,7 +379,6 @@ def insert_totals(df_cm):
     df_cm['sum_lin'] = sum_lin
     sum_col.append(np.sum(sum_lin))
     df_cm.loc['sum_col'] = sum_col
-    #print ('\ndf_cm:\n', df_cm, '\n\b\n')
 
 def pretty_plot_confusion_matrix(df_cm, annot=True, cmap="Oranges", fmt='.2f', fz=11,
       lw=0.5, cbar=False, figsize=[8,8], show_null_values=0, pred_val_axis='y', save_route=None):
@@ -439,7 +436,6 @@ def pretty_plot_confusion_matrix(df_cm, annot=True, cmap="Oranges", fmt='.2f', f
         pos = np.array( t.get_position()) - [0.5,0.5]
         lin = int(pos[1]); col = int(pos[0]);
         posi += 1
-        #print ('>>> pos: %s, posi: %s, val: %s, txt: %s' %(pos, posi, array_df[lin][col], t.get_text()))
 
         #set text
         txt_res = configcell_text_and_colors(array_df, lin, col, t, facecolors, posi, fz, fmt, show_null_values)

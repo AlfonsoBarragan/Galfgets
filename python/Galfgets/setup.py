@@ -1,0 +1,43 @@
+from distutils.core import setup
+setup(
+  name = 'Galfgets',        
+  packages = ['Galfgets'],   
+  version = '0.1',      
+  license='GNU3',        
+  description = 'Package with several util functions to evade the wasting of time',   # Give a short description about your library
+  author = 'Alfonso Barragan Carmona',           
+  author_email = 'alfonso.barragan@uclm.es',      
+  url = 'https://github.com/AlfonsoBarragan/Galfgets',   
+  download_url = 'https://github.com/user/reponame/archive/v_01.tar.gz',    
+  keywords = ['UTILS', 'LAMBDAS', 'REGULAR EXPRESIONS', 'FUNCTIONS'],   
+  install_requires=[            
+          're',
+          'copy',
+          'math',
+          'json',
+          'joblib',
+          'pickle',
+          'random',
+          'functools',
+          'numpy',
+          'pandas',
+          'seaborn',
+          'matplotlib',
+          'pdfminer',
+          'sklearn',
+
+      ],
+  classifiers=[
+    'Development Status :: 3 - Alpha',      
+    'Intended Audience :: Developers',      
+    'Topic :: Software Development :: Build Tools',
+    'License :: OSI Approved :: GNU3 License',   
+    'Programming Language :: Python :: 3',      
+    'Programming Language :: Python :: 3.4',
+    'Programming Language :: Python :: 3.5',
+    'Programming Language :: Python :: 3.6',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
+  ],
+)
