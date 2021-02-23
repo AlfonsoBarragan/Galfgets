@@ -7,7 +7,7 @@ setup(
   description = 'Package with several util functions to evade the wasting of time',   # Give a short description about your library
   author = 'Alfonso Barragan Carmona',           
   author_email = 'alfonso.barragan@uclm.es',      
-  url = 'https://github.com/AlfonsoBarragan/Galfgets',   
+  url = 'https://github.com/AlfonsoBarragan/Galfgets/tree/main/python/Galfgets',   
   download_url = 'https://github.com/user/reponame/archive/v_01.tar.gz',    
   keywords = ['UTILS', 'LAMBDAS', 'REGULAR EXPRESIONS', 'FUNCTIONS'],   
   install_requires=[            
