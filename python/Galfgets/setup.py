@@ -4,11 +4,11 @@ setup(
   packages = ['Galfgets'],   
   version = '0.1',      
   license='GNU3',        
-  description = 'Package with several util functions to evade the wasting of time',   # Give a short description about your library
+  description = 'Package with several util functions to evade the wasting of time', 
   author = 'Alfonso Barragan Carmona',           
   author_email = 'alfonso.barragan@uclm.es',      
   url = 'https://github.com/AlfonsoBarragan/Galfgets/tree/main/python/Galfgets',   
-  download_url = 'https://github.com/user/reponame/archive/v_01.tar.gz',    
+  download_url = 'https://github.com/AlfonsoBarragan/Galfgets/releases/download/0.1/Galfgets-0.1.tar.gz',    
   keywords = ['UTILS', 'LAMBDAS', 'REGULAR EXPRESIONS', 'FUNCTIONS'],   
   install_requires=[            
           're',
