@@ -1,0 +1,49 @@
+(setq inhibit-startup-message t)
+
+(scroll-bar-mode -1)        ; Disable visible scrollbar
+(tool-bar-mode -1)          ; Disable the toolbar
+(tooltip-mode -1)           ; Disable tooltips
+(set-fringe-mode 10)        ; Give some breathing room
+
+(menu-bar-mode -1)            ; Disable the menu bar
+
+;; Set up the visible bell
+(setq visible-bell t)
+
+(set-face-attribute 'default nil :font "IBM Plex Mono" :height 280)
+
+;; Set up the custom theme
+;(load-theme 'wombat)
+;; Don't change the font size for some headings and titles (default t)
+(load-theme 'dracula t)
+
+;; Make ESC quit prompts
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+
+;; Initialize package sources
+(require 'package)
+(setq package-archives '(("Gnu" . "https://elpa.gnu.org/packages/")
+                         ("Melpa"   . "https://melpa.org/packages/")))
+(package-initialize)
+(unless package-archive-contents
+ (package-refresh-contents))
+
+;; Initialize use-package on non-Linux platforms
+(unless (package-installed-p 'use-package)
+   (package-install 'use-package))
+
+(require 'use-package)
+(setq use-package-always-ensure t)
+
+(use-package command-log-mode)
+
+(use-package evil)
+(evil-mode 1)
+
+(use-package nlinum-relative
+    :config
+    ;; something else you want
+    (nlinum-relative-setup-evil)
+    (add-hook 'prog-mode-hook 'nlinum-relative-mode))
+
+(setq browse-url-browser-function 'eww-browse-url)

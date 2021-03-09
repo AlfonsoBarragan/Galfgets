@@ -23,7 +23,6 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'ycm-core/YouCompleteMe'
 Plug 'morhetz/gruvbox'
 Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-fugitive'
@@ -40,6 +39,7 @@ Plug 'preservim/nerdtree'
 Plug 'natebosch/vim-lsc'
 Plug 'natebosch/vim-lsc-dart'
 Plug 'dart-lang/dart-vim-plugin', {'branch': '0.1.0'}
+Plug 'preservim/tagbar', {'branch': 'v3.0.0'}
 call plug#end()
  
 colorscheme gruvbox

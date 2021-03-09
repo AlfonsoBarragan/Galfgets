@@ -39,6 +39,10 @@ _re_digits          = re.compile(r"[\d|\d\.]*")
 # Data analysis tools
 
 ## Dataset related tools
+def print_columns_names(df):
+    for col_index, col_name in enumerate(df.columns):
+        print("{} -> {}".format(col_index, col_name))
+
 def read_dataset(path, separator=","):
     """ Reads the dataset in csv format by defect (separator = ,)
     
