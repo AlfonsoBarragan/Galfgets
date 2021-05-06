@@ -112,7 +112,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-PS1='\[\e[0;1;7;38;5;105m\]\u\[\e[0m\]|\[\e[0;1;3;7;38;5;141m\]$(git branch 2>/dev/null | grep '"'"'^*'"'"' | colrm 1 2)\[\e[m\] \[\e[0m\](\[\e[0;38;5;202m\]\!\[\e[0m\])\[\e[0m\][\[\e[0;38;5;99m\]\l\[\e[0m\]]\[\e[0m\]{\[\e[0;38;5;156m\]\#\[\e[0m\]}\[\e[m\] \[\e[0;2m\]\A\[\e[m\] \[\e[0;1;3;38;5;188m\]\w\[\e[m\] \[\e[0;1;5;38;5;202m\]>\[\e[m\] \[\e0' 
+PS1='\[\e[0m\](\[\e[0;38;5;236;48;5;105m\]$(git branch 2>/dev/null | grep '"'"'^*'"'"' | colrm 1 2)\[\e[0m\]) \[\e[0;38;5;166m\]\u \[\e[0;3;4;38;5;178m\]\h \[\e[0m\]| \[\e[0m\][\[\e[0;38;5;166m\]\!\[\e[0m\]]\[\e[0m\]{\[\e[0;38;5;113m\]\#\[\e[0m\]} \[\e[0;38;5;111m\]\A \[\e[0;1m\]\w \[\e[0;1;5;38;5;202m\]> \[\e[0m\]'
 
 alias work='source ~/Documentos/snake_works/bin/activate'
 alias dev_web='source ~/Documentos/web_snake/bin/activate'
