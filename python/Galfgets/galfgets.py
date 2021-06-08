@@ -11,7 +11,6 @@ import numpy                    as np
 import pandas                   as pd
 import seaborn                  as sn
 import matplotlib.pyplot        as plt
-import pdfminer.high_level      as pdfminer
 import matplotlib.font_manager  as fm
 
 from os                         import scandir, getcwd
@@ -42,6 +41,15 @@ _re_digits          = re.compile(r"[\d|\d\.]*")
 def print_columns_names(df):
     for col_index, col_name in enumerate(df.columns):
         print("{} -> {}".format(col_index, col_name))
+
+def show_columns_value(dataset:pd.DataFrame, cols_to_omit:list=[]):
+    for column in list(dataset.columns):
+    
+        if (column not in cols_to_omit):
+            print('Values in column {}:'.format(column))
+
+            for value in dataset[column].unique():
+                print('\t+ {}'.format(value))
 
 def read_dataset(path, separator=","):
     """ Reads the dataset in csv format by defect (separator = ,)
@@ -521,20 +529,6 @@ def read_json_file(route):
         json_file_readt = json.load(json_file)
     
     return json_file_readt
-
-def read_pdf(pdf_route, paragraph_level=True, line_level=False, word_level=False, separators={'paragraph':'.\n', 'line':'.', 'word':' '}):
-
-    pdf_text = pdfminer.extract_text(pdf_route)
-
-    text_to_return = {}
-
-    if word_level       : text_to_return['words'] = pdf_text.split(separators['word'])
-    if line_level       : text_to_return['lines'] = pdf_text.split(separators['line'])
-    if paragraph_level  : text_to_return['paragraphs'] = pdf_text.split(separators['paragraph'])
-    
-    return text_to_return
-    
-    # List tools
 
 def write_list_to_file(list_to_write, output_file):
     file = open(output_file, 'w')
