@@ -3,6 +3,7 @@ import re
 import copy
 import math
 import json
+import ijson
 import joblib
 import pickle
 import random
@@ -38,9 +39,21 @@ _re_digits          = re.compile(r"[\d|\d\.]*")
 # Data analysis tools
 
 ## Dataset related tools
-def print_columns_names(df):
-    for col_index, col_name in enumerate(df.columns):
-        print("{} -> {}".format(col_index, col_name))
+def show_columns_value(dataset:pd.DataFrame, cols_to_omit:list=[]):
+    for column in list(dataset.columns):
+    
+        if (column not in cols_to_omit):
+            print('Values in column {}:'.format(column))
+
+            for value in dataset[column].unique():
+                print('\t+ {}'.format(value))
+        
+def load_tables_from_big_JSON(database):
+    dicts_dfs = []
+
+    with open(database, 'rb') as fin:
+        for obj in ijson.items(fin, 'item'):
+            dicts_dfs.append(obj)
 
 def show_columns_value(dataset:pd.DataFrame, cols_to_omit:list=[]):
     for column in list(dataset.columns):
@@ -157,6 +170,40 @@ def insert_row_in_pos(pos, row_value, df):
     data_half_low = data_half_low.append(data_half_big, ignore_index = True)
 	
     return data_half_low
+
+def merge_datasets(data_folder, output_name):
+    
+    datasets_list = ls(data_folder)
+    
+    data_to_combine = []
+    
+    for dataset_name in datasets_list:
+        data_to_combine.append(pd.read_csv(data_folder+dataset_name))
+        
+    
+    resume_dataset = pd.concat(data_to_combine)
+    resume_dataset.to_csv(output_name)
+    
+    return resume_dataset
+
+def compute_consecutive_parameters_aggregation(df, column_name, col_to_group, values_to_delimite):
+    
+    column_name_aux = column_name + '_X'
+    df[column_name_aux] = df[column_name].shift()
+    
+    df["cumsum"] = (df[column_name] != df[column_name_aux]).cumsum()
+    
+    return df
+    
+def agrupate_by_cycles(df, column_name, col_to_group, values_to_delimite):  
+    
+    df_aux = df.groupby([col_to_group, 'cumsum']).first()
+    df_aux['cycle'] = (df_aux[column_name].isin(values_to_delimite)).cumsum()
+    
+    
+    df_aux2 = df_aux.groupby([col_to_group, 'cycle']).first()
+        
+    return df_aux2
 
 ## Decision tree and Random Forests related tools
 

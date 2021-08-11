@@ -116,6 +116,7 @@ PS1='\[\e[0m\](\[\e[0;38;5;236;48;5;105m\]$(git branch 2>/dev/null | grep '"'"'^
 
 alias work='source ~/Documentos/snake_works/bin/activate'
 alias dev_web='source ~/Documentos/web_snake/bin/activate'
+alias cura='/opt/cura/Ultimaker_Cura-4.8.0.AppImage'
 export PATH="/home/alf/Documentos/Librerias/flutter/bin:${PATH}"
 
 
