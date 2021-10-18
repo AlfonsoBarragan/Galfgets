@@ -2,7 +2,7 @@ from distutils.core import setup
 setup(
   name = 'Galfgets',        
   packages = ['Galfgets'],   
-  version = '0.1.6',      
+  version = '0.2.4',      
   license='GNU General Public License v3 (GPLv3)',        
   description = 'Package with several util functions to evade the wasting of time', 
   author = 'Alfonso Barragan Carmona',           
@@ -17,6 +17,7 @@ setup(
           'seaborn',
           'matplotlib',
           'sklearn',
+          'ijson',
 
       ],
   classifiers=[

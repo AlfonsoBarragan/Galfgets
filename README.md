@@ -1,6 +1,6 @@
 # Galfgets - General purpouse functions to recycle
 
-![A beautiful humpback whale with hat](resources/Galfget.png)
+![A beautiful belt with some much medals](resources/Galfget.png)
 
 ![Last release](https://img.shields.io/badge/Last%20release-SpiderSnake-ff065c)
 [![Package status](https://img.shields.io/badge/Package%20status-up%20to%20date!-blue)](https://github.com/AlfonsoBarragan/Galfgets)
