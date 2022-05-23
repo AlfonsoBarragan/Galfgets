@@ -26,3 +26,5 @@ variance_funct          = lambda x, m: (x - m) ** 2
 
 coordinates_oper        = lambda x1, x2: math.pow((x2 - x1), 2)
 distance_between_points = lambda p1, p2: math.sqrt(functools.reduce(sum_funct, map(coordinates_oper, p1, p2)))
+
+get_random_string       = lambda n_chars: ''.join(random.choice(string.ascii_letters + string.digits) for i in range(n_chars))
