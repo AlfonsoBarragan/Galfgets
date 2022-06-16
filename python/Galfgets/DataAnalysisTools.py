@@ -1,9 +1,9 @@
+import joblib
 import pandas                   as pd
 
 from enum                       import Enum
 from typing                     import Tuple, TypeVar
 from sklearn                    import preprocessing
-from sklearn.externals          import joblib
 
 # Data analysis tools
 
