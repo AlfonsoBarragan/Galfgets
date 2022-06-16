@@ -1,6 +1,12 @@
 
 # Math computing functions
 
+import math
+import string
+import random
+import functools
+
+
 def mean(list_input:list) -> float:
     aggregation = functools.reduce(sum_funct, list_input, 0)
 

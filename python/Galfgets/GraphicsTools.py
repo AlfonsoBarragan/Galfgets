@@ -1,9 +1,14 @@
+import time
 import pandas                   as pd
+import seaborn                  as sns
+import matplotlib.pyplot        as plt
 
-from typing                     import TypeVar
+from typing                     import Tuple, TypeVar
 from datetime                   import datetime
 from dataclasses                import dataclass, field
+from sklearn.metrics            import confusion_matrix
 from matplotlib.collections     import QuadMesh
+
 
 # Graphics and representation
 ## Console representation
@@ -93,14 +98,14 @@ def compute_time(method:callable) -> None:
 
 ## Confusion matrix graphics 
 
-def get_new_fig(fn, figsize=[9,9]):
+def get_new_fig(fn:list, figsize:list=[9,9]) -> Tuple[plt.figure, plt.axes]:
     """ Init graphics """
     fig1 = plt.figure(fn, figsize)
     ax1 = fig1.gca()   #Get Current Axis
     ax1.cla() # clear existing plot
     return fig1, ax1
 
-def configcell_text_and_colors(array_df, lin, col, oText, facecolors, posi, fz, fmt, show_null_values=0):
+def configcell_text_and_colors(array_df:pd.DataFrame, lin:int, col:int, oText:str, facecolors, posi, fz, fmt, show_null_values=0) -> Tuple[list, list]:
     """
       config cell text and colors
       and return text elements to add and to dell
@@ -178,7 +183,7 @@ def configcell_text_and_colors(array_df, lin, col, oText, facecolors, posi, fz, 
 
     return text_add, text_del
 
-def insert_totals(df_cm):
+def insert_totals(df_cm:pd.DataFrame) -> None:
     """ insert total column and line (the last ones) """
     sum_col = []
     for c in df_cm.columns:
@@ -190,8 +195,8 @@ def insert_totals(df_cm):
     sum_col.append(np.sum(sum_lin))
     df_cm.loc['sum_col'] = sum_col
 
-def pretty_plot_confusion_matrix(df_cm, annot=True, cmap="Oranges", fmt='.2f', fz=11,
-      lw=0.5, cbar=False, figsize=[8,8], show_null_values=0, pred_val_axis='y', save_route=None):
+def pretty_plot_confusion_matrix(df_cm:pd.DataFrame, annot:bool=True, cmap:str="Oranges", fmt:str='.2f', fz:int=11,
+      lw:float=0.5, cbar:bool=False, figsize:list=[8,8], show_null_values:int=0, pred_val_axis:str='y', save_route:str='') -> None:
     """
       print conf matrix with default layout (like matlab)
       params:
@@ -219,7 +224,7 @@ def pretty_plot_confusion_matrix(df_cm, annot=True, cmap="Oranges", fmt='.2f', f
     fig, ax1 = get_new_fig('Conf matrix default', figsize)
 
     #thanks for seaborn
-    ax = sn.heatmap(df_cm, annot=annot, annot_kws={"size": fz}, linewidths=lw, ax=ax1,
+    ax = sns.heatmap(df_cm, annot=annot, annot_kws={"size": fz}, linewidths=lw, ax=ax1,
                     cbar=cbar, cmap=cmap, linecolor='w', fmt=fmt)
 
     #set ticklabels rotation
@@ -267,18 +272,17 @@ def pretty_plot_confusion_matrix(df_cm, annot=True, cmap="Oranges", fmt='.2f', f
     
     plt.tight_layout()  #set layout slim
     
-    if save_route != None:
+    if save_route != '':
         plt.savefig(save_route)
     else: 
         plt.show()
 
-def plot_confusion_matrix_from_data(y_test, predictions, columns=None, annot=True, cmap="Oranges",
-      fmt='.2f', fz=11, lw=0.5, cbar=False, figsize=[8,8], show_null_values=0, pred_val_axis='lin'):
+def plot_confusion_matrix_from_data(y_test:pd.Series, predictions:pd.Series, columns:list=None, annot:bool=True, cmap:str="Oranges",
+      fmt:str='.2f', fz:int=11, lw:float=0.5, cbar:bool=False, figsize:list=[8,8], show_null_values:int=0, pred_val_axis:str='lin') -> None:
     """
         plot confusion matrix function with y_test (actual values) and predictions (predic),
         whitout a confusion matrix yet
     """
-    from sklearn.metrics import confusion_matrix
 
     #data
     if(not columns):
@@ -327,7 +331,7 @@ def make_line_plot(characteristic:str, char_name:str, over_var:str, dataset_list
 
 def make_hist_plot(char:str, char_date:list, dataset:pd.DataFrame, label_dict:dict, 
                    label_groups_list:list, width:int, n_groups:int, y_label:str, \
-                   title:str, legend:bool=False,  filename:str='', file_format:str='svg') -> None:
+                   title:str, legend:bool=False,  filename:str='', file_format:str='svg') -> list:
     fig, ax = plt.subplots()
     ind = np.arange(n_groups)
 

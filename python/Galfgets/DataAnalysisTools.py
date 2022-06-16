@@ -1,8 +1,9 @@
 import pandas                   as pd
 
 from enum                       import Enum
-from typing                     import TypeVar
+from typing                     import Tuple, TypeVar
 from sklearn                    import preprocessing
+from sklearn.externals          import joblib
 
 # Data analysis tools
 
@@ -109,7 +110,7 @@ def normalize_dataset(dataset:pd.DataFrame, scaler:str='MinMax') -> pd.DataFrame
     return dataframe_norm
 
 
-def divide_datasets(df_merged:pd.DataFrame, percentage:float=0.67) -> (pd.DataFrame, pd.DataFrame):
+def divide_datasets(df_merged:pd.DataFrame, percentage:float=0.67) -> Tuple[pd.DataFrame, pd.DataFrame]:
     
     df_divide = df_merged.sample(frac=1)
     df_train = df_divide[:int((len(df_divide))*percentage)]
@@ -117,7 +118,7 @@ def divide_datasets(df_merged:pd.DataFrame, percentage:float=0.67) -> (pd.DataFr
     
     return df_train, df_test
 
-def divide_files(list_of_files:list, percentage:float=0.67) -> (list, list):
+def divide_files(list_of_files:list, percentage:float=0.67) -> Tuple[list, list]:
 
     list_train  = []
     list_test   = []
@@ -205,18 +206,18 @@ def save_context(generic_object:TypeVar('T'), name:str, folder:str) -> None:
     # Save to file in the current working directory
     pkl_filename = "{}/{}".format(folder, name)  
     with open(pkl_filename, 'wb') as file:  
-        pickle.dump(generic_object, file)
+        joblib.dump(generic_object, file)
         
 def load_context(name:str, folder:str) -> TypeVar('T'):
     # Save to file in the current working directory
     pkl_filename = "{}/{}".format(folder, name)  
     # Load from file
     with open(pkl_filename, 'rb') as file:  
-        generic_object = pickle.load(file)
+        generic_object = joblib.load(file)
     
     return generic_object
     
-def save_model(model, test, name, folder, feature_to_predict):
+def save_model(model:TypeVar('T'), test:pd.DataFrame, name:str, folder:str, feature_to_predict:str) -> None:
     
     features    = test.columns[:32]
     Xtest       = test[features]
@@ -225,22 +226,22 @@ def save_model(model, test, name, folder, feature_to_predict):
     # Save to file in the current working directory
     pkl_filename = "{}/{}".format(folder, name)  
     with open(pkl_filename, 'wb') as file:  
-        pickle.dump(model, file)
+        joblib.dump(model, file)
     
     # Load from file
     with open(pkl_filename, 'rb') as file:  
-        pickle_model = pickle.load(file)
+        joblib_model = joblib.load(file)
     
     # Calculate the accuracy score and predict target values
-    score = pickle_model.score(Xtest, Ytest)  
+    score = joblib_model.score(Xtest, Ytest)  
     print("Test score: {0:.2f} %".format(100 * score))  
     
-def load_model(joblib_file, test, feature_to_predict, acc_opt=-1):
+def load_model(joblib_file:TypeVar('T'), test:pd.DataFrame, feature_to_predict:int, acc_opt:int=-1) -> TypeVar('T'):
     
     if acc_opt == 0:
         features    = test.columns[:32]
         Xtest       = test[features]
-        Ytest       = test['Gait_event']
+        Ytest       = test[feature_to_predict]
             
         # Load from file
         joblib_model = joblib.load(joblib_file)

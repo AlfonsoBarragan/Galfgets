@@ -1,6 +1,9 @@
 # Data Structures tools
 
-def binarySearch(list_input:list, item:int) -> (bool, int):
+from typing import Tuple
+
+
+def binarySearch(list_input:list, item:int) -> Tuple[bool, int]:
     # Code from https://stackoverflow.com/questions/34420006/binary-search-python-3-5
     first = 0
     last = len(list_input)-1
