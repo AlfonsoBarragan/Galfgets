@@ -2,14 +2,14 @@ from distutils.core import setup
 setup(
   name = 'Galfgets',        
   packages = ['Galfgets'],   
-  version = '0.2.4',      
+  version = '0.2.4.2',      
   license='GNU General Public License v3 (GPLv3)',        
   description = 'Package with several util functions to evade the wasting of time', 
   author = 'Alfonso Barragan Carmona',           
-  author_email = 'alfonso.barragan@uclm.es',      
+  author_email = 'donalfonsobarragancarmona@gmail.com',      
   url = 'https://github.com/AlfonsoBarragan/Galfgets/tree/main/python/Galfgets',   
-  download_url = 'https://github.com/AlfonsoBarragan/Galfgets/releases/download/0.1.4/Galfgets-0.1.4.tar.gz',    
-  keywords = ['UTILS', 'LAMBDAS', 'REGULAR EXPRESIONS', 'FUNCTIONS'],   
+  download_url = 'https://github.com/AlfonsoBarragan/Galfgets/releases/download/0.2.4.2/Galfgets-0.2.4.2.tar.gz',    
+  keywords = ['UTILS', 'LAMBDAS', 'REGULAR EXPRESIONS', 'FUNCTIONS', 'DATA SCIENCE', 'JSON', 'MACHINE LEARNING'],   
   install_requires=[            
           'joblib',
           'numpy',
